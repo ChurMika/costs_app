@@ -14,6 +14,7 @@
 import PaymentsList from './components/PaymentsList'
 import PaymentForm from './components/PaymentForm'
 
+
 export default {
   name: 'App',
   components: {
