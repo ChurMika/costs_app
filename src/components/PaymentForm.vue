@@ -14,6 +14,7 @@
 
 <script>
 import AddButton from './AddButton'
+import { mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -32,6 +33,9 @@ export default {
     items: Array
   },
   methods: {
+    ...mapMutations ([
+      'setPaymentsListData'
+    ]),
     save () {
       const { date, category, price } = this
       this.$emit('add', { date, category, price })
@@ -41,8 +45,7 @@ export default {
         this.choice = true
       } else {
         this.choice = false
-      }
-      
+      }      
     }
   }
 }
@@ -50,5 +53,4 @@ export default {
 
 
 <style lang="scss">
-
 </style>
