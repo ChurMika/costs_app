@@ -4,7 +4,7 @@
       My personal costs
     </header>
     <main>
-      <PaymentForm @add="onDataAdded" />
+      <PaymentForm />
       <PaymentsList />
     </main>
   </div>
@@ -29,10 +29,7 @@ export default {
   methods: {
     ...mapActions([
       'fetchData'
-    ]),
-    onDataAdded (data) {
-      this.paymentsList.push(data)
-    }
+    ])
   },
   mounted () {
     this.fetchData()

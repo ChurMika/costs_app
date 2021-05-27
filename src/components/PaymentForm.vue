@@ -14,7 +14,8 @@
 
 <script>
 import AddButton from './AddButton'
-import { mapMutations } from 'vuex'
+
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -34,11 +35,12 @@ export default {
   },
   methods: {
     ...mapMutations ([
-      'setPaymentsListData'
+      'addNewLine'
     ]),
     save () {
       const { date, category, price } = this
-      this.$emit('add', { date, category, price })
+      this.addNewLine({ date, category, price })
+      console.log(this.getPaymentsList);
     },
     showForm (choice) {
       if (this.choice === false) {
@@ -47,6 +49,11 @@ export default {
         this.choice = false
       }      
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getPaymentsList'
+    ])
   }
 }
 </script>

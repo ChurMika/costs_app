@@ -10,12 +10,20 @@ export default new Vuex.Store({
   mutations: {
     setPaymentsListData (state, payload) {
       state.paymentsList = payload
+    },
+    addNewLine (state, line) {
+      state.paymentsList.push({line})
     }
   },
   getters: {
-    getPaymentsList: state => state.paymentsList
+    getPaymentsList(state) {
+      return state.paymentsList
+    }
   },
   actions: {
+    addLine({commit}, line) {
+      commit('addNewLine', line)
+    },
     fetchData ({ commit }) {
       return new Promise ((resolve, reject) => {
         setTimeout(() => {
