@@ -12,7 +12,7 @@ export default new Vuex.Store({
       state.paymentsList = payload
     },
     addNewLine (state, line) {
-      state.paymentsList.push({line})
+      state.paymentsList.push(line)
     }
   },
   getters: {

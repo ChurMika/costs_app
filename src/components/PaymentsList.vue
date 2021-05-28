@@ -5,19 +5,21 @@
       <p class="table_cell">{{ item.category }}</p> 
       <p class="table_cell">{{ item.price }}</p> 
     </div>
+    <Pagination />
   </div>
 </template>
 
 <script>
+import Pagination from './Pagination'
+
 import { mapGetters } from 'vuex'
+
 export default {
+  components: {
+    Pagination 
+  },
   props: {
     items: Array
-  },
-  methods: {
-    doSomething () {
-      console.log(this.items)
-    }
   },
   computed: {
     ...mapGetters([
