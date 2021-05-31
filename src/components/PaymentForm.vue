@@ -40,14 +40,9 @@ export default {
     save () {
       const { date, category, price } = this
       this.addNewLine({ date, category, price })
-      console.log(this.getPaymentsList);
     },
     showForm (choice) {
-      if (this.choice === false) {
-        this.choice = true
-      } else {
-        this.choice = false
-      }      
+      this.choice = !this.choice
     }
   },
   computed: {

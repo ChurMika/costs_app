@@ -22,10 +22,6 @@ export default {
     PaymentsList,
     PaymentForm
   },
-  data () {
-    return {
-    }
-  },
   methods: {
     ...mapActions([
       'fetchData'
