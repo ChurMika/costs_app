@@ -9,7 +9,11 @@
       <input placeholder="Price" v-model.number="price" />
       <button @click="save">Save</button>
     </div>
-    <CreateCategory :items = "values"  v-if="this.category === 'Add new'"/>    
+    <CreateCategory 
+    :items = "values"  
+    v-if="this.category === 'Add new'"
+    @create="addCategory"
+    />    
   </div>
 </template>
 
@@ -44,7 +48,9 @@ export default {
     showForm (choice) {
       this.choice = !this.choice
     },
-
+    addCategory (data) {
+      this.values.push(data)
+    }
   },
   computed: {
     ...mapGetters([

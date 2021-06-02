@@ -1,6 +1,6 @@
 <template>
   <div>
-      <input type="text" v-model="category">
+      <input type="text" v-model="newCategory">
       <button @click="createCategory">Create new category</button>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
     data () {
         return {
-            category: ''
+            newCategory: ''
         }       
     },
     props: {
@@ -17,9 +17,7 @@ export default {
     },
     methods: {
         createCategory () {
-            let {category, items} = this
-            items.push(category)
-            this.$emit('create')
+            this.$emit('create', this.newCategory)
         }
     }
 }
