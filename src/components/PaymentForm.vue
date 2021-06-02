@@ -9,29 +9,29 @@
       <input placeholder="Price" v-model.number="price" />
       <button @click="save">Save</button>
     </div>
+    <CreateCategory :items = "values"  v-if="this.category === 'Add new'"/>    
   </div>
 </template>
 
 <script>
 import AddButton from './AddButton'
+import CreateCategory from './CreateCategory'
 
 import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   components: {
-    AddButton
+    AddButton,
+    CreateCategory
   },
   data () {
     return {
       date: '',
       category: '',
       price: 0,
-      values: ['Food', 'Transport', 'Education', 'Clothes', 'Others'],
+      values: ['Add new', 'Food', 'Transport', 'Education', 'Clothes', 'Others'],
       choice: false
     }
-  },
-  props: {
-    items: Array
   },
   methods: {
     ...mapMutations ([
@@ -43,7 +43,8 @@ export default {
     },
     showForm (choice) {
       this.choice = !this.choice
-    }
+    },
+
   },
   computed: {
     ...mapGetters([
