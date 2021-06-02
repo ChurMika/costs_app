@@ -15,6 +15,8 @@
 <script>
 import AddButton from './AddButton'
 
+import { mapMutations, mapGetters } from 'vuex'
+
 export default {
   components: {
     AddButton
@@ -32,23 +34,25 @@ export default {
     items: Array
   },
   methods: {
+    ...mapMutations ([
+      'addNewLine'
+    ]),
     save () {
       const { date, category, price } = this
-      this.$emit('add', { date, category, price })
+      this.addNewLine({ date, category, price })
     },
     showForm (choice) {
-      if (this.choice === false) {
-        this.choice = true
-      } else {
-        this.choice = false
-      }
-      
+      this.choice = !this.choice
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getPaymentsList'
+    ])
   }
 }
 </script>
 
 
 <style lang="scss">
-
 </style>
