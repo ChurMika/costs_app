@@ -1,35 +1,17 @@
 <template>
   <div id="app">
-     <header class="header">
-      My personal costs
-    </header>
-    <main>
-      <PaymentForm />
-      <PaymentsList />
-    </main>
+    <div id="nav">
+      <router-link to="/dashboard">Dashboard</router-link>|
+      <router-link to="/about">About</router-link> |
+      <router-link to="/404">404</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import PaymentsList from './components/PaymentsList'
-import PaymentForm from './components/PaymentForm'
-
-import { mapActions } from 'vuex'
-
 export default {
-  name: 'App',
-  components: {
-    PaymentsList,
-    PaymentForm
-  },
-  methods: {
-    ...mapActions([
-      'fetchData'
-    ])
-  },
-  mounted () {
-    this.fetchData()
-  }
+  name: 'App'
 }
 </script>
 
@@ -40,6 +22,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>

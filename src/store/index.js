@@ -16,44 +16,44 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getPaymentsList(state) {
+    getPaymentsList (state) {
       return state.paymentsList
     }
   },
   actions: {
-    addLine({commit}, line) {
+    addLine ({ commit }, line) {
       commit('addNewLine', line)
     },
     fetchData ({ commit }) {
-      return new Promise ((resolve, reject) => {
+      return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([
-              {
-                date: '13.05.2021',
-                category: 'Education',
-                price: 123
-              },
-              {
-                date: '12.05.2021',
-                category: 'Education',
-                price: 456
-              },
-              {
-                date: '11.05.2021',
-                category: 'Education',
-                price: 789
-              },
-              {
-                date: '10.05.2021',
-                category: 'Education',
-                price: 0
-              }
-            ])
+            {
+              date: '13.05.2021',
+              category: 'Education',
+              price: 123
+            },
+            {
+              date: '12.05.2021',
+              category: 'Education',
+              price: 456
+            },
+            {
+              date: '11.05.2021',
+              category: 'Education',
+              price: 789
+            },
+            {
+              date: '10.05.2021',
+              category: 'Education',
+              price: 0
+            }
+          ])
         }, 1000)
       })
-      .then(res => {
-        commit('setPaymentsListData', res)
-      })
+        .then(res => {
+          commit('setPaymentsListData', res)
+        })
     }
   }
 })

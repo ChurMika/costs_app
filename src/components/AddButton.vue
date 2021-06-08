@@ -7,13 +7,12 @@
 <script>
 export default {
   methods: {
-      openForm () {
-          this.$emit('open')
-      }
+    openForm () {
+      this.$emit('open')
+    }
   }
 }
 </script>
-
 
 <style lang="scss">
 
