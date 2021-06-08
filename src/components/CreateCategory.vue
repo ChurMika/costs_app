@@ -7,19 +7,19 @@
 
 <script>
 export default {
-    data () {
-        return {
-            newCategory: ''
-        }       
-    },
-    props: {
-        items: Array
-    },
-    methods: {
-        createCategory () {
-            this.$emit('create', this.newCategory)
-        }
+  data () {
+    return {
+      newCategory: ''
     }
+  },
+  props: {
+    items: Array
+  },
+  methods: {
+    createCategory () {
+      this.$emit('create', this.newCategory)
+    }
+  }
 }
 </script>
 
