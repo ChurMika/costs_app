@@ -17,6 +17,9 @@ export default new Vuex.Store({
     },
     addNewValue (state, value) {
       state.paymentsValues.push(value)
+    },
+    deleteLine (state, index) {
+      state.paymentsList.splice(index, 1)
     }
   },
   getters: {
@@ -64,6 +67,9 @@ export default new Vuex.Store({
     },
     addValue ({commit}, value) {
       commit('addNewValue', value)
+    },
+    delLine ({commit}, index) {
+      commit('deleteLine', index)
     }
   }
 })

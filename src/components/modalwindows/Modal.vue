@@ -7,7 +7,7 @@
             <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
         </select>
         <input v-model.number="price">
-        <button>save</button>
+        <button @click="saveChange">save</button>
       </div>
       <button class="modal_btn" @click="deleteLine"><img src="./../../assets/delete.png" alt="" class="modal_img"></button>
   </div>
@@ -15,7 +15,7 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
     data () {
@@ -27,11 +27,18 @@ export default {
         }
     },
     methods: {
+        ...mapMutations([
+            'deleteLine'
+        ]),
         changeLine () {
             this.chg = !this.chg
         },
+        saveChange () {
+            console.log(5);
+        },
         deleteLine () {
-            console.log(10);
+            //найти индекс строки
+            //удалить строку
         }
     },
     computed: {

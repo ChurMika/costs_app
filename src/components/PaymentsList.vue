@@ -7,7 +7,10 @@
       <p class="table_cell">{{ item.date }}</p>
       <p class="table_cell">{{ item.category }}</p>
       <p class="table_cell">{{ item.price }}</p>
-      <Modal v-if="modalView" :name="modalView" />
+      <Modal 
+        v-if="modalView" 
+        :name="modalView" 
+        />
     </div>
     <Pagination
       :length="getPaymentsList.length"
