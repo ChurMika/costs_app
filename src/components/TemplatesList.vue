@@ -11,16 +11,16 @@
 export default ({
     data () {
         return {
-            value: ''
+            values: ''
         }
     },
     methods: {
         clickLink () {
-            this.$emit('use', this.$route.params.value)
+            this.$emit('use', [this.$route.params.value, this.$route.query.value])
         }
     },
     mounted () {
-        this.value = this.$route.params.value
+        this.values = this.$route.params.value
     }
 })
 </script>

@@ -5,13 +5,12 @@
     <div v-if="choice">
       <input type="date" placeholder="01.01.1900" v-model="date" />
       <select v-model="category">
-        <option v-for="(value, index) in values" :key="index">{{ value }}</option>
+        <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
       </select>
       <input placeholder="Price" v-model.number="price" />
       <button @click="save">Save</button>
     </div>
     <CreateCategory
-      :items = "values"
       v-if="this.category === 'Add new'"
       @create="addCategory"
     />
@@ -41,13 +40,13 @@ export default {
       date: '',
       category: '',
       price: 0,
-      values: ['Add new', 'Food', 'Transport', 'Education', 'Clothes', 'Others'],
       choice: false
     }
   },
   methods: {
     ...mapMutations([
-      'addNewLine'
+      'addNewLine',
+      'addNewValue'
     ]),
     save () {
       const { date, category, price } = this
@@ -57,29 +56,18 @@ export default {
       this.choice = !this.choice
     },
     addCategory (data) {
-      this.values.push(data)
+      this.addNewValue(data)
     },
     useTemplate () {
-      let routeValue = this.$route.params.value
-    
-      if (routeValue === 'Food') {
-        this.date = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
-        this.category = 'Food'
-        this.price = 200
-      } else if (routeValue === 'Transport') {
-        this.date = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
-        this.category = 'Transport'
-        this.price = 50
-      } else {
-        this.date = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
-        this.category = 'Education'
-        this.price = 2000
-      }
+      this.category = this.$route.params.value
+      this.date = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
+      this.price = this.$route.query.value
     }
   },
   computed: {
     ...mapGetters([
-      'getPaymentsList'
+      'getPaymentsList',
+      'getPaymentsValues'
     ])
   }
 }
