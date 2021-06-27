@@ -1,9 +1,13 @@
 <template>
   <div>
     <div v-for="(item, index) in currentElements" :key="index" class="table_row">
+      <p class="table_cell">{{ index+1 }}</p>
       <p class="table_cell">{{ item.date }}</p>
       <p class="table_cell">{{ item.category }}</p>
-      <p class="table_cell">{{ item.price }}</p>
+      <p class="table_cell">{{ item.price }}</p>         
+      <Modal>        
+        <p class="slot">{{index}}</p>
+      </Modal>  
     </div>
     <Pagination
       :length="getPaymentsList.length"
@@ -21,7 +25,8 @@ import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    Pagination
+    Pagination,
+    Modal: () => import('./modalwindows/Modal')
   },
   data () {
     return {
@@ -42,6 +47,14 @@ export default {
       const { n, page } = this
       return this.getPaymentsList.slice(n * (page - 1), n * (page - 1) + n)
     }
+  },
+  mounted () {
+    this.$modal.EventBus.$on('show', this.onShown)
+    this.$modal.EventBus.$on('close', this.onClose)
+  },
+  beforeDestroy () {
+    this.$modal.EventBus.$off('show', this.onShown)
+    this.$modal.EventBus.$off('close', this.onClose)
   }
 }
 </script>
@@ -49,11 +62,33 @@ export default {
 <style lang="scss">
  .table_row {
    margin: 0 auto;
-   width: 360px;
+   min-width: 360px;
    display: flex;
    justify-content: space-around;
  }
  .table_cell {
-   width: 60px;
+   width: 25%;
  }
+ .table_btn {
+   margin-top: 12px;
+   height: 50%;
+ }
+ .menu_img {
+   height: 12px;
+ }
+ .open {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #fff;
+}
+.btn_icon {
+    display: block;
+    font-size: 15px;
+    width: 15px;
+    margin-left: -5px;
+}
+.slot {
+  display: none;
+}
 </style>

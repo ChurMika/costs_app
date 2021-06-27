@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import PageDashboard from '../views/PageDashboard'
-import PageAbout from '../views/PageAbout'
-import Page404 from '../views/Page404'
 
 Vue.use(VueRouter)
 
@@ -12,22 +9,22 @@ export default new VueRouter ({
     {
       path: '/dashboard',
       name: 'Dashboard',
-      component: PageDashboard
+      component: () => import('../views/PageDashboard')
     },
     {
       path: '/dashboard/add/payment/:value',
       name: 'DashboardAdd',
-      component: PageDashboard
+      component: () => import('../views/PageDashboard')
     },
     {
       path: '/about',
       name: 'NotFound',
-      component: PageAbout
+      component: () => import('../views/PageAbout')
     },
     {
       path: '*',
       name: '404',
-      component: Page404
+      component: () => import('../views/Page404')
     }
   ]
 })

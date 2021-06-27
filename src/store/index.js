@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    paymentsList: []
+    paymentsList: [],
+    paymentsValues: ['Add new', 'Food', 'Transport', 'Education', 'Clothes', 'Others']
   },
   mutations: {
     setPaymentsListData (state, payload) {
@@ -13,11 +14,20 @@ export default new Vuex.Store({
     },
     addNewLine (state, line) {
       state.paymentsList.push(line)
+    },
+    addNewValue (state, value) {
+      state.paymentsValues.push(value)
+    },
+    deleteLine (state, index) {
+      state.paymentsList.splice(index, 1)
     }
   },
   getters: {
     getPaymentsList (state) {
       return state.paymentsList
+    },
+    getPaymentsValues (state) {
+      return state.paymentsValues
     }
   },
   actions: {
@@ -54,6 +64,12 @@ export default new Vuex.Store({
         .then(res => {
           commit('setPaymentsListData', res)
         })
+    },
+    addValue ({commit}, value) {
+      commit('addNewValue', value)
+    },
+    delLine ({commit}, index) {
+      commit('deleteLine', index)
     }
   }
 })
