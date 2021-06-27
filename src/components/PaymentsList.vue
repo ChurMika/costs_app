@@ -1,16 +1,13 @@
 <template>
   <div>
-      <button class="table_btn" @click="modalShow">
-        <img src="./../assets/dots.png" alt="menu" class="menu_img">
-      </button>
     <div v-for="(item, index) in currentElements" :key="index" class="table_row">
+      <p class="table_cell">{{ index+1 }}</p>
       <p class="table_cell">{{ item.date }}</p>
       <p class="table_cell">{{ item.category }}</p>
-      <p class="table_cell">{{ item.price }}</p>
-      <Modal 
-        v-if="modalView" 
-        :name="modalView" 
-        />
+      <p class="table_cell">{{ item.price }}</p>         
+      <Modal>        
+        <p class="slot">{{index}}</p>
+      </Modal>  
     </div>
     <Pagination
       :length="getPaymentsList.length"
@@ -34,22 +31,12 @@ export default {
   data () {
     return {
       page: 1,
-      n: 10,
-      modalView: false
+      n: 10
     }
   },
   methods: {
     onPgaginate (p) {
       this.page = p
-    },
-    modalShow () {
-      this.modalView = !this.modalView
-    },
-    onShown ({ name }) {
-      this.modalShown = name
-    },
-    onClose () {
-      this.modalShown = ''
     }
   },
   computed: {
@@ -89,4 +76,19 @@ export default {
  .menu_img {
    height: 12px;
  }
+ .open {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #fff;
+}
+.btn_icon {
+    display: block;
+    font-size: 15px;
+    width: 15px;
+    margin-left: -5px;
+}
+.slot {
+  display: none;
+}
 </style>

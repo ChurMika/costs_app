@@ -1,16 +1,26 @@
 <template>
-  <div class="modal">
-      <button class="modal_btn" @click="changeLine"><img src="./../../assets/pencil.png" alt="" class="modal_img"></button>
-      <div v-if="chg"> 
-        <input type="date" v-model="date">
-        <select v-model="category" >
-            <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
-        </select>
-        <input v-model.number="price">
-        <button @click="saveChange">save</button>
-      </div>
-      <button class="modal_btn" @click="deleteLine"><img src="./../../assets/delete.png" alt="" class="modal_img"></button>
-  </div>
+    <div>
+        <button class="open" @click="openForm">
+            <i class="material-icons btn_icon" >more_vert</i>
+        </button>
+        <div class="modal" v-show="modalView" >
+            <div class="change" ref="mySlot">
+                <button class="edit"><i class="material-icons">edit</i></button>
+                <slot></slot>
+                <div>
+                    <input type="date" placeholder="date" v-model="date" />
+                    <select v-model="category">
+                        <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
+                    </select>
+                    <input placeholder="Price" v-model.number="price" />
+                    <button @click="saveCng">Save</button>
+                </div>
+            </div>
+            <button class="delete" @click="delLine">
+                <i class="material-icons">delete</i>
+            </button>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -23,22 +33,27 @@ export default {
             date: '',
             category: '',
             price: 0,
-            chg: false
+            chg: false,
+            modalView: false
         }
     },
     methods: {
         ...mapMutations([
-            'deleteLine'
+            'deleteLine',
+            'changeLine'
         ]),
-        changeLine () {
-            this.chg = !this.chg
+        delLine () {      
+            let idx = parseInt(this.$refs.mySlot.textContent.slice(4))
+            this.deleteLine(idx);
         },
-        saveChange () {
-            console.log(5);
+        openForm () {
+            this.modalView = !this.modalView
         },
-        deleteLine () {
-            //найти индекс строки
-            //удалить строку
+        saveCng () {
+            let idx = parseInt(this.$refs.mySlot.textContent.slice(4))
+            this.$set(this.getPaymentsList[idx], 'date', this.date)
+            this.$set(this.getPaymentsList[idx], 'category', this.category)
+            this.$set(this.getPaymentsList[idx], 'price', this.price)
         }
     },
     computed: {
@@ -56,7 +71,10 @@ export default {
     padding-top: 12px;
     height: 50%;
 }
-.modal_img {
-    height: 12px;
+.edit, .delete {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #fff;
 }
 </style>
