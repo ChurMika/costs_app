@@ -13,7 +13,7 @@
                         <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
                     </select>
                     <input placeholder="Price" v-model.number="price" />
-                    <button @click="saveCng">Save</button>
+                    <button @click="saveCng()">Save</button>
                 </div>
             </div>
             <button class="delete" @click="delLine">
@@ -40,7 +40,9 @@ export default {
     methods: {
         ...mapMutations([
             'deleteLine',
-            'changeLine'
+            'dateChange',
+            'categoryChange',
+            'priceChange'
         ]),
         delLine () {      
             let idx = parseInt(this.$refs.mySlot.textContent.slice(4))
@@ -51,9 +53,19 @@ export default {
         },
         saveCng () {
             let idx = parseInt(this.$refs.mySlot.textContent.slice(4))
-            this.$set(this.getPaymentsList[idx], 'date', this.date)
-            this.$set(this.getPaymentsList[idx], 'category', this.category)
-            this.$set(this.getPaymentsList[idx], 'price', this.price)
+            const { date, category, price } = this
+            if (date) {
+                const payload = [idx, date]
+                this.dateChange(payload)
+            } 
+            if (category) {
+                const payload = [idx, category]
+                this.categoryChange(payload)
+            }
+            if (price) {
+                const payload = [idx, price]
+                this.priceChange(payload)
+            }
         }
     },
     computed: {
