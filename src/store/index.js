@@ -20,6 +20,15 @@ export default new Vuex.Store({
     },
     deleteLine (state, index) {
       state.paymentsList.splice(index, 1)
+    },
+    dateChange (state, payload) {
+      Vue.set(state.paymentsList[payload[0]], 'date', payload[1])
+    },
+    categoryChange (state, payload) {
+      Vue.set(state.paymentsList[payload[0]], 'category', payload[1])
+    },
+    priceChange (state, payload) {
+      Vue.set(state.paymentsList[payload[0]], 'price', payload[1])
     }
   },
   getters: {
@@ -70,6 +79,15 @@ export default new Vuex.Store({
     },
     delLine ({commit}, index) {
       commit('deleteLine', index)
+    },
+    dateCng ({commit}, payload) {
+      commit('dateChange', payload)
+    },
+    categoryCng ({commit}, payload) {
+      commit('categoryChange', payload)
+    },
+    priceCng ({commit}, payload) {
+      commit('priceChange', payload)
     }
-  }
+  } 
 })
