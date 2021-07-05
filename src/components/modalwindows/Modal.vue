@@ -3,6 +3,7 @@
         <button class="open" @click="openForm">
             <i class="material-icons btn_icon" >more_vert</i>
         </button>
+        <transition name="fade">
         <div class="modal" v-show="modalView" >
             <div class="change" ref="mySlot">
                 <button class="edit" @click="change"><i class="material-icons">edit</i></button>
@@ -20,6 +21,7 @@
                 <i class="material-icons">delete</i>
             </button>
         </div>
+        </transition>
     </div>
 </template>
 
@@ -101,4 +103,11 @@ export default {
     border: none;
     background-color: #fff;
 }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+} 
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 </style>
