@@ -62,7 +62,7 @@ export default {
 <style lang="scss">
  .table_row {
    margin: 0 auto;
-   min-width: 360px;
+   width: 360px;
    display: flex;
    justify-content: space-around;
  }

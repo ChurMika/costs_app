@@ -1,13 +1,13 @@
 <template>
-    <div>
+    <div class="modal-window">
         <button class="open" @click="openForm">
             <i class="material-icons btn_icon" >more_vert</i>
         </button>
         <div class="modal" v-show="modalView" >
             <div class="change" ref="mySlot">
-                <button class="edit"><i class="material-icons">edit</i></button>
+                <button class="edit" @click="change"><i class="material-icons">edit</i></button>
                 <slot></slot>
-                <div>
+                <div v-if="needChange">
                     <input type="date" placeholder="date" v-model="date" />
                     <select v-model="category">
                         <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
@@ -34,7 +34,8 @@ export default {
             category: '',
             price: 0,
             chg: false,
-            modalView: false
+            modalView: false,
+            needChange: false
         }
     },
     methods: {
@@ -50,6 +51,9 @@ export default {
         },
         openForm () {
             this.modalView = !this.modalView
+        },
+        change () {
+            this.needChange = !this.needChange
         },
         saveCng () {
             let idx = parseInt(this.$refs.mySlot.textContent.slice(4))
@@ -78,10 +82,18 @@ export default {
 </script>
 
 <style lang="scss">
+.modal-window {
+    position: relative;
+}
 .modal {
-    display: flex;
-    padding-top: 12px;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    z-index: 2;
     height: 50%;
+    display: flex;
+    justify-content: space-around;
+    width: 75px;
 }
 .edit, .delete {
     width: 20px;
