@@ -15,7 +15,7 @@
       @create="addCategory"
     />
     <br>
-    <TemplatesList 
+    <TemplatesList
       v-if="choice"
       @use="useTemplate"
     />
@@ -60,7 +60,7 @@ export default {
     },
     useTemplate () {
       this.category = this.$route.params.value
-      this.date = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
+      this.date = new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2)
       this.price = this.$route.query.value
     }
   },

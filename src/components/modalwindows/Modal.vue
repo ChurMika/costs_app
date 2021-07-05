@@ -30,56 +30,56 @@
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
-    data () {
-        return {
-            date: '',
-            category: '',
-            price: 0,
-            chg: false,
-            modalView: false,
-            needChange: false
-        }
-    },
-    methods: {
-        ...mapMutations([
-            'deleteLine',
-            'dateChange',
-            'categoryChange',
-            'priceChange'
-        ]),
-        delLine () {      
-            let idx = parseInt(this.$refs.mySlot.textContent.slice(4))
-            this.deleteLine(idx);
-        },
-        openForm () {
-            this.modalView = !this.modalView
-        },
-        change () {
-            this.needChange = !this.needChange
-        },
-        saveCng () {
-            let idx = parseInt(this.$refs.mySlot.textContent.slice(4))
-            const { date, category, price } = this
-            if (date) {
-                const payload = [idx, date]
-                this.dateChange(payload)
-            } 
-            if (category) {
-                const payload = [idx, category]
-                this.categoryChange(payload)
-            }
-            if (price) {
-                const payload = [idx, price]
-                this.priceChange(payload)
-            }
-        }
-    },
-    computed: {
-        ...mapGetters([
-            'getPaymentsList',
-            'getPaymentsValues'
-        ])
+  data () {
+    return {
+      date: '',
+      category: '',
+      price: 0,
+      chg: false,
+      modalView: false,
+      needChange: false
     }
+  },
+  methods: {
+    ...mapMutations([
+      'deleteLine',
+      'dateChange',
+      'categoryChange',
+      'priceChange'
+    ]),
+    delLine () {
+      const idx = parseInt(this.$refs.mySlot.textContent.slice(4))
+      this.deleteLine(idx)
+    },
+    openForm () {
+      this.modalView = !this.modalView
+    },
+    change () {
+      this.needChange = !this.needChange
+    },
+    saveCng () {
+      const idx = parseInt(this.$refs.mySlot.textContent.slice(4))
+      const { date, category, price } = this
+      if (date) {
+        const payload = [idx, date]
+        this.dateChange(payload)
+      }
+      if (category) {
+        const payload = [idx, category]
+        this.categoryChange(payload)
+      }
+      if (price) {
+        const payload = [idx, price]
+        this.priceChange(payload)
+      }
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getPaymentsList',
+      'getPaymentsValues'
+    ])
+  }
 }
 </script>
 
@@ -105,7 +105,7 @@ export default {
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
-} 
+}
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }

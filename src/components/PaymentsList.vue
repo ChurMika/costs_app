@@ -4,10 +4,10 @@
       <p class="table_cell">{{ index+1 }}</p>
       <p class="table_cell">{{ item.date }}</p>
       <p class="table_cell">{{ item.category }}</p>
-      <p class="table_cell">{{ item.price }}</p>         
-      <Modal>        
+      <p class="table_cell">{{ item.price }}</p>
+      <Modal>
         <p class="slot">{{index}}</p>
-      </Modal>  
+      </Modal>
     </div>
     <Pagination
       :length="getPaymentsList.length"

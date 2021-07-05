@@ -74,20 +74,20 @@ export default new Vuex.Store({
           commit('setPaymentsListData', res)
         })
     },
-    addValue ({commit}, value) {
+    addValue ({ commit }, value) {
       commit('addNewValue', value)
     },
-    delLine ({commit}, index) {
+    delLine ({ commit }, index) {
       commit('deleteLine', index)
     },
-    dateCng ({commit}, payload) {
+    dateCng ({ commit }, payload) {
       commit('dateChange', payload)
     },
-    categoryCng ({commit}, payload) {
+    categoryCng ({ commit }, payload) {
       commit('categoryChange', payload)
     },
-    priceCng ({commit}, payload) {
+    priceCng ({ commit }, payload) {
       commit('priceChange', payload)
     }
-  } 
+  }
 })
