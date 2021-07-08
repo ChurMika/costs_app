@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <button @click="openForm">Add new cost</button>
-  </div>
+    <v-btn 
+    color="teal" 
+    dark 
+    @click="openForm">
+      Add new cost
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
 </template>
 
 <script>

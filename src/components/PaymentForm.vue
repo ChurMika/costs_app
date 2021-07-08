@@ -1,14 +1,14 @@
 <template>
   <div>
     <AddButton @open="showForm" />
-    <br>
+    <br><br>
     <div v-if="choice">
-      <input type="date" placeholder="01.01.1900" v-model="date" />
-      <select v-model="category">
+      <input type="date" placeholder="01.01.1900" v-model="date" class="choice_list"/>
+      <select v-model="category" class="choice_list">
         <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
       </select>
-      <input placeholder="Price" v-model.number="price" />
-      <button @click="save">Save</button>
+      <input placeholder="Price" v-model.number="price" class="choice_list"/>
+      <v-btn @click="save">Save</v-btn>
     </div>
     <CreateCategory
       v-if="this.category === 'Add new'"
@@ -74,4 +74,9 @@ export default {
 </script>
 
 <style lang="scss">
+.choice_list {
+  width: 150px;
+  margin: 0 5px;
+  border: 1px solid black;
+}
 </style>

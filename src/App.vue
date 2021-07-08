@@ -1,12 +1,10 @@
 <template>
   <v-app>
-    <v-system-bar>
-      <div id="nav">
-        <router-link to="/dashboard">Dashboard</router-link>|
-        <router-link to="/about">About</router-link> |
-        <router-link to="/404">404</router-link>
-      </div>
-    </v-system-bar>
+    <v-app-bar app flat>
+        <v-btn :ripple="false" plain to="/dashboard">Dashboard</v-btn>
+        <v-btn :ripple="false" plain to="/about">About</v-btn> 
+        <v-btn :ripple="false" plain to="/404">404</v-btn>
+    </v-app-bar>
     <v-main>
       <router-view/>
     </v-main>

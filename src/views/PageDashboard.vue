@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-     <header class="header">
+    <header class="header">
       My personal costs
     </header>
     <br>
-    <main>
-      <PaymentForm />
-      <br>
-      <PaymentsList />
-    </main>
+    <v-row>
+      <v-col>
+        <PaymentForm />
+        <br>
+        <PaymentsList />
+      </v-col>
+      <v-col>Diagram</v-col>
+    </v-row>
   </div>
 </template>
 
