@@ -1,8 +1,6 @@
 <template>
   <div>
-    <AddButton @open="showForm" />
-    <br><br>
-    <div v-if="choice">
+    <div>
       <input type="date" placeholder="01.01.1900" v-model="date" class="choice_list"/>
       <select v-model="category" class="choice_list">
         <option v-for="(value, index) in getPaymentsValues" :key="index">{{ value }}</option>
@@ -16,14 +14,12 @@
     />
     <br>
     <TemplatesList
-      v-if="choice"
       @use="useTemplate"
     />
   </div>
 </template>
 
 <script>
-import AddButton from './AddButton'
 import CreateCategory from './CreateCategory'
 import TemplatesList from './TemplatesList'
 
@@ -31,7 +27,6 @@ import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   components: {
-    AddButton,
     CreateCategory,
     TemplatesList
   },
@@ -39,8 +34,7 @@ export default {
     return {
       date: '',
       category: '',
-      price: 0,
-      choice: false
+      price: 0
     }
   },
   methods: {
@@ -51,9 +45,6 @@ export default {
     save () {
       const { date, category, price } = this
       this.addNewLine({ date, category, price })
-    },
-    showForm (choice) {
-      this.choice = !this.choice
     },
     addCategory (data) {
       this.addNewValue(data)

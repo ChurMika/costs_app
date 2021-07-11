@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(item, index) in currentElements" :key="index" class="table_row">
+    <!--<div v-for="(item, index) in currentElements" :key="index" class="table_row">
       <p class="table_cell">{{ index+1 }}</p>
       <p class="table_cell">{{ item.date }}</p>
       <p class="table_cell">{{ item.category }}</p>
@@ -8,30 +8,48 @@
       <Modal>
         <p class="slot">{{index}}</p>
       </Modal>
-    </div>
-    <Pagination
-      :length="getPaymentsList.length"
-      :n="n"
-      :cur="page"
-      @paginate="onPgaginate"
-    />
+    </div> -->
+    <v-data-table
+      :headers="tableHeaders"
+      :items="listWithIndex"
+    >
+    <template v-slot:item.actions="{ item }">
+      <v-icon
+        small
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        small
+        @click="deleteItem(item)"
+      >
+        mdi-delete
+      </v-icon>
+    </template>
+    </v-data-table>
   </div>
 </template>
 
 <script>
-import Pagination from './Pagination'
-
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    Pagination,
     Modal: () => import('./modalwindows/Modal')
   },
   data () {
     return {
       page: 1,
-      n: 10
+      n: 10,
+      tableHeaders: [
+        { text: '#', value: 'index' },
+        { text: 'Date', value: 'date' },
+        { text: 'Category', value: 'category' },
+        { text: 'Value', value: 'price' },
+        { text: 'Actions', value: 'actions', sortable: false }
+      ]
     }
   },
   methods: {
@@ -43,9 +61,11 @@ export default {
     ...mapGetters([
       'getPaymentsList'
     ]),
-    currentElements () {
-      const { n, page } = this
-      return this.getPaymentsList.slice(n * (page - 1), n * (page - 1) + n)
+    listWithIndex () {
+      return this.getPaymentsList.map((obj, i) => {
+        obj.index = i + 1
+        return obj
+      })
     }
   },
   mounted () {
@@ -60,15 +80,6 @@ export default {
 </script>
 
 <style lang="scss">
- .table_row {
-   margin: 0 auto;
-   width: 360px;
-   display: flex;
-   justify-content: space-around;
- }
- .table_cell {
-   width: 25%;
- }
  .table_btn {
    margin-top: 12px;
    height: 50%;
