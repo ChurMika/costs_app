@@ -22,7 +22,9 @@
         <br><br>
         <PaymentsList />
       </v-col>
-      <v-col>Diagram</v-col>
+      <v-col>
+        <Chart />
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -30,13 +32,15 @@
 <script>
 import PaymentsList from '../components/PaymentsList'
 import PaymentForm from '../components/PaymentForm'
+import Chart from '../components/Chart'
 
 import { mapActions } from 'vuex'
 
 export default {
   components: {
     PaymentsList,
-    PaymentForm
+    PaymentForm,
+    Chart
   },
   data () {
     return {

@@ -54,18 +54,18 @@ export default new Vuex.Store({
             },
             {
               date: '12.05.2021',
-              category: 'Education',
+              category: 'Food',
               price: 456
             },
             {
               date: '11.05.2021',
-              category: 'Education',
+              category: 'Transport',
               price: 789
             },
             {
               date: '10.05.2021',
               category: 'Education',
-              price: 0
+              price: 536
             }
           ])
         }, 1000)
