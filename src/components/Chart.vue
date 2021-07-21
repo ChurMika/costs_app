@@ -13,12 +13,12 @@ am4core.useTheme(am4themes_animated);
 import { mapGetters } from 'vuex'
 
 export default {
-    computed: {
-        ...mapGetters([
-        'getPaymentsList'
-        ])
-    },
-    mounted() {
+  computed: {
+    ...mapGetters([
+    'getPaymentsList'
+    ])
+  },
+  mounted() {
     let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
 
     let data = this.getPaymentsList
@@ -46,6 +46,8 @@ export default {
   }
 }
 </script>
+
+
 
 <style>
 .hello {
