@@ -28,7 +28,7 @@ export default {
     categoryAxis.title.text = "Category";
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.title.text = "Persent of Costs";
+    valueAxis.title.text = "Costs";
 
     let series = chart.series.push(new am4charts.ColumnSeries());
     series.dataFields.categoryX = "category";
@@ -38,7 +38,7 @@ export default {
     
     this.chart = chart;
   },
-
+  
   beforeDestroy() {
     if (this.chart) {
       this.chart.dispose();
